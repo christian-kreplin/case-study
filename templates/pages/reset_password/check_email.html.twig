@@ -1,0 +1,17 @@
+{% set modalTitle = 'Passwort zurücksetzen' %}
+{% extends 'layouts/modal.html.twig' %}
+
+{% block content %}
+  <p>
+    Wenn ein mit E-Mail verknüpftes Konto existiert, erhältst du eine E-Mail mit Anweisungen, wie du dein Passwort
+    zurücksetzen kannst. Der Link in der E-Mail ist 1 Stunde gültig.
+  </p>
+  <p>
+    Solltest du keine E-Mail erhalten, sieh bitte auch
+    in deinem Spam-Ordner nach oder
+    <a class="text-link" href="{{ path('app_forgot_password_request') }}">versuche es nochmal</a>.
+  </p>
+  <p>
+    <a href="{{ path('app_login') }}" class="text-link">Zurück zum Login</a>
+  </p>
+{% endblock %}

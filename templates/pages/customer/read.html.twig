@@ -1,0 +1,61 @@
+{% set actionBtn = {link: path('app_customer_add'), label: 'Kunde erstellen'} %}
+{% extends 'layouts/base.html.twig' %}
+
+{% block body %}
+  <article class="lg:w-1/2 relative">
+    {% include 'components/pages/item_header.html.twig' with {
+      backLink: path('app_customer_browse'),
+      button: {
+        text: 'Bearbeiten',
+        link: path('app_customer_edit', {id: customer.id})
+      },
+      withDelete: true,
+    } %}
+
+    {% include 'components/pages/delete.html.twig' with {
+      path: path('app_customer_delete', {id: customer.id}),
+      id: customer.id,
+      reposition: true
+    } %}
+
+    <div class="pl-2 lg:ml-4">
+      <div class="flex items-center flex-col sm:flex-row">
+        {% if customer.imageName != null %}
+          {% include 'components/avatar/image.html.twig' with {
+            path: 'uploads/images/customer/' ~ customer.id ~ '/',
+            item: customer,
+            displayBig: true} %}
+        {% else %}
+          {% include 'components/avatar/placeholder.html.twig' with {name: customer.name, displayBig: true} %}
+        {% endif %}
+
+        <div class="sm:ml-10 text-center sm:text-left mt-8 sm:mt-0">
+          <h1 class="justify-center sm:justify-start">{{ customer.name }}</h1>
+          <p class="mt-2">Status: {{ customer.active ? 'aktiv' : 'inaktiv' }}</p>
+        </div>
+      </div>
+
+      {% if caseStudies|length > 0 %}
+        <div class="w-full mt-8 sm:mt-12">
+          <div class="custom-label">
+            <label>Case Studies</label>
+          </div>
+          <div class="flex flex-col gap-3 mt-4">
+            {% for item in caseStudies %}
+              <a href="{{ path('app_case_study_read', {id: item.id}) }}" class="flex items-center">
+                {% if item.imageName != null %}
+                  {% include 'components/avatar/image.html.twig' with {path: 'uploads/images/case_study/', item: item} %}
+                {% else %}
+                  {% include 'components/avatar/placeholder.html.twig' with {name: item.title} %}
+                {% endif %}
+                <p class="ml-4">{{ item.title }}</p>
+              </a>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </article>
+
+  {% include 'scripts/edit_delete_handling.html.twig' %}
+{% endblock %}

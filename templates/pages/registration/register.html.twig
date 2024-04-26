@@ -1,0 +1,46 @@
+{% set modalTitle = 'Konto erstellen' %}
+{% extends 'layouts/modal.html.twig' %}
+
+{% block content %}
+  {{ form_start(form) }}
+
+  <div class="field">
+    <input type="email"
+           value="{{ field_value(form.email) }}"
+           name="{{ field_name(form.email) }}"
+           id="{{ field_name(form.email) }}"
+           class="default peer"
+           placeholder=" "
+           autocomplete="email"
+           required>
+    {% include 'components/form/label_for_input.html.twig' with {id: field_name(form.email), text: field_label(form.email)} %}
+  </div>
+
+  <div class="field">
+    <input type="password"
+           value="{{ field_value(form.plainPassword) }}"
+           name="{{ field_name(form.plainPassword) }}"
+           id="{{ field_name(form.plainPassword) }}"
+           class="default peer"
+           placeholder=" "
+           autocomplete="new-password"
+           required>
+    {% include 'components/form/label_for_input.html.twig' with {id: field_name(form.plainPassword), text: 'Passwort'} %}
+  </div>
+
+  {{ form_rest(form) }}
+
+  <button class="w-full mt-6" type="submit">Konto erstellen</button>
+  {{ form_end(form) }}
+
+  <p class="text-center mt-8">
+    Hast du bereits ein Konto?
+    <a class="text-link" href="{{ path('app_login') }}">
+      Anmelden
+    </a>
+  </p>
+
+  {% if errors is defined %}
+    {% include 'components/dialog/dialog.html.twig' with {title: (errors|length == 1 ? 'Problem' : 'Probleme') ~ ' aufgetreten', message: errors, buttonText: 'OK'} %}
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,12 @@
+{% set modalTitle = 'Sieh in deinem Posteingang nach.' %}
+{% extends 'layouts/modal.html.twig' %}
+
+{% block content %}
+  <p class="text-center">
+    Klicke auf den Link, den wir an <strong>{{ email }}</strong> geschickt haben, um die Einrichtung deines Kontos
+    abzuschließen.
+  </p>
+  <p class="text-center mt-4">
+    Dieses Browser-Fenster kann geschlossen werden.
+  </p>
+{% endblock %}

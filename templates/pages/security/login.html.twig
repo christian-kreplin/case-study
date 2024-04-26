@@ -1,0 +1,67 @@
+{% set modalTitle = 'Anmelden' %}
+{% extends 'layouts/modal.html.twig' %}
+
+{% block content %}
+  <form method="post" class="flex flex-col justify-center">
+    <div class="field">
+      <input type="email"
+             value="{{ last_username }}"
+             name="email"
+             id="inputEmail"
+             class="default peer"
+             placeholder=" "
+             autocomplete="email"
+             required
+             autofocus>
+      {% include 'components/form/label_for_input.html.twig' with {id: 'inputEmail', text: 'E-Mail'} %}
+    </div>
+
+    <div class="field">
+      <input type="password"
+             name="password"
+             id="inputPassword"
+             class="default peer"
+             placeholder=" "
+             autocomplete="current-password"
+             required>
+
+      {% include 'components/form/label_for_input.html.twig' with {id: 'inputPassword', text: 'Kennwort'} %}
+    </div>
+
+    <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}">
+
+    <label class="flex items-center my-4">
+      <input type="checkbox" name="_remember_me">
+      <span>Angemeldet bleiben</span>
+    </label>
+
+    <button class="w-full mt-2" type="submit">
+      Anmelden
+    </button>
+
+    <p class="text-center mt-8">
+      <a class="text-link"
+         href="{{ path('app_forgot_password_request') }}">
+        Passwort zurücksetzen
+      </a>
+    </p>
+
+    <p class="text-center">
+      Noch kein Konto?
+      <a class="text-link" href="{{ path('app_register') }}">
+        Lege jetzt eins an.
+      </a>
+    </p>
+  </form>
+
+  {% if resend_verification %}
+    {% include 'components/dialog/resend_verification.html.twig' with {
+      title: 'Problem',
+      message: error.messageKey|trans(error.messageData, 'security'),
+      buttonText: 'OK',
+      email: resend_verification[0]} %}
+  {% elseif error %}
+    {% include 'components/dialog/dialog.html.twig' with {title: 'Problem', message: error.messageKey|trans(error.messageData, 'security'), buttonText: 'OK'} %}
+  {% endif %}
+{% endblock %}

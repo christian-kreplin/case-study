@@ -1,0 +1,28 @@
+{% set actionBtn = {link: path('app_user_add'), label: 'Redakteur erstellen'} %}
+{% extends 'layouts/base.html.twig' %}
+
+{% block body %}
+  <article class="lg:w-1/2 relative">
+    {% include 'components/pages/item_header.html.twig' with {
+      backLink: path('app_user_browse'),
+      button: {
+        text: 'Bearbeiten',
+        link: path('app_user_edit', {id: user.id})
+      },
+      withDelete: true,
+    } %}
+
+    {% include 'components/pages/delete.html.twig' with {
+      path: path('app_user_delete', {id: user.id}),
+      id: user.id,
+      reposition: true
+    } %}
+
+    <div class="pl-2 lg:ml-12">
+      <h1>{{ user.email }}</h1>
+      <p class="mt-2">Status: {{ user.verified ? 'verifiziert' : 'offen' }}</p>
+    </div>
+  </article>
+
+  {% include 'scripts/edit_delete_handling.html.twig' %}
+{% endblock %}

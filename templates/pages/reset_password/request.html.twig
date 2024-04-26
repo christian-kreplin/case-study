@@ -1,0 +1,28 @@
+{% set modalTitle = 'Gib deine E-Mail-Adresse ein, um dein Passwort zurückzusetzen.' %}
+{% extends 'layouts/modal.html.twig' %}
+
+{% block content %}
+
+  {{ form_start(form) }}
+
+  <div class="field">
+    <input type="email"
+           value="{{ field_value(form.email) }}"
+           name="{{ field_name(form.email) }}"
+           id="{{ field_name(form.email) }}"
+           class="default peer"
+           placeholder=" "
+           autocomplete="email"
+           required>
+    {% include 'components/form/label_for_input.html.twig' with {id: field_name(form.email), text: field_label(form.email)} %}
+  </div>
+
+  <button class="w-full mt-6" type="submit">Passwort zurücksetzen</button>
+  {{ form_end(form) }}
+
+  <p class="text-center mt-8">
+    <a class="text-link" href="{{ path('app_login') }}">
+      Abbrechen
+    </a>
+  </p>
+{% endblock %}

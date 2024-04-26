@@ -1,0 +1,27 @@
+{% set loggedIn = app.user != null %}
+
+<header class="flex p-4">
+  <div class="lg:ml-auto flex items-center gap-6">
+    <div class="relative inline-block">
+      <button data-type="dropdown" data-target="#dropdown1"
+              class="btn-tonal relative flex flex-row items-center justify-center gap-x-2 py-2.5 px-6 rounded-[6.25rem] hover:shadow-md text-sm tracking-[.00714em] font-medium bg-secondary-100 text-primary-900 dark:bg-secondary-700 dark:text-secondary-100"
+      ">
+      {{ loggedIn ? app.user.userIdentifier : 'Gast' }}
+      <span class="material-symbols-outlined">expand_more</span>
+      </button>
+
+      <ul id="dropdown1" role="dropdownmenu"
+          class="[&.show]:!opacity-100 [&.show]:!visible opacity-0 invisible absolute top-[3.1rem] z-30 transition duration-400 ease-in-out left-0 lg:left-auto lg:right-0 min-w-[200px] inline-flex flex-col py-2 rounded bg-surface-200 dark:bg-surfacedark-200 shadow-md dark:shadow-gray-50/10">
+        {% if not loggedIn %}
+          {% include 'components/dropdown/item.html.twig' with {link: path('app_login'), icon: 'person', title: 'Anmelden'} %}
+        {% endif %}
+        {% include 'components/dropdown/theme_switch.html.twig' %}
+        {% include 'components/dropdown/item.html.twig' with {link: 'https://github.com/christian-kreplin/case-study', icon: 'help_center', title: 'Hilfe'} %}
+        {% if loggedIn %}
+          <hr class="my-2 border-gray-200 dark:border-gray-700">
+          {% include 'components/dropdown/item.html.twig' with {link: path('app_logout'), icon: 'logout', title: 'Abmelden'} %}
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</header>

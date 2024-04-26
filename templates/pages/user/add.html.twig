@@ -1,0 +1,45 @@
+{% set actionBtn = {link: path('app_user_add'), label: 'Redakteur erstellen'} %}
+{% extends 'layouts/base.html.twig' %}
+
+{% block body %}
+  <div class="form-wrapper">
+    {{ form_start(form, {attr: {class: 'manage'}}) }}
+    {% include 'components/pages/item_header.html.twig' with { backLink: path('app_user_browse')} %}
+
+    <div class="fields">
+      <div class="field">
+        <input type="email"
+               value="{{ field_value(form.email) }}"
+               name="{{ field_name(form.email) }}"
+               id="{{ field_name(form.email) }}"
+               class="default peer"
+               placeholder=" "
+               autocomplete="email"
+               required>
+        {% include 'components/form/label_for_input.html.twig' with {id: field_name(form.email), text: field_label(form.email)} %}
+      </div>
+
+      <div class="field">
+        <input type="password"
+               value="{{ field_value(form.plainPassword) }}"
+               name="{{ field_name(form.plainPassword) }}"
+               id="{{ field_name(form.plainPassword) }}"
+               class="default peer"
+               placeholder=" "
+               required>
+        {% include 'components/form/label_for_input.html.twig' with {id: field_name(form.plainPassword), text: field_label(form.plainPassword)} %}
+      </div>
+
+      <div class="field mt-4 flex items-center">
+        {{ form_widget(form.verified) }}
+        {{ form_label(form.verified) }}
+      </div>
+    </div>
+
+    {{ form_end(form) }}
+  </div>
+
+  {% if errors is defined %}
+    {% include 'components/dialog/dialog.html.twig' with {title: (errors|length == 1 ? 'Problem' : 'Probleme') ~ ' aufgetreten', message: errors, buttonText: 'OK'} %}
+  {% endif %}
+{% endblock %}

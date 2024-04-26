@@ -1,0 +1,21 @@
+<div
+    class="w-full lg:w-[284px] fixed left-0 lg:top-0 bottom-0 right-0 lg:h-screen flex flex-row lg:flex-col z-50 bg-surface-100 dark:bg-surfacedark-100 py-2 lg:py-0">
+  <a href="{{ path('app_default_index') }}" class="hidden lg:flex relative items-center ml-8 mt-4 mb-7">
+    <img src="{{ asset('build/img/csm.svg') }}" alt="Logo" class="w-8 h-8 mr-4"/>
+    <p class="font-bold tracking-wider">
+      Case-Study Manager
+    </p>
+  </a>
+
+  <div class="mx-4 w-full lg:w-auto">
+    {% if app.user and actionBtn is defined %}
+      <a href="{{ actionBtn.link }}"
+         class="btn-tonal action-btn mb-4 absolute lg:relative right-3 bottom-16 lg:right-0 lg:bottom-0">
+        <span class="material-symbols-outlined">add</span>
+        <span class="hidden lg:inline-block">{{ actionBtn.label }}</span>
+      </a>
+    {% endif %}
+
+    {% include 'components/nav/nav.html.twig' %}
+  </div>
+</div>

@@ -1,0 +1,7 @@
+{% if app.user %}
+  {% set classes = reposition is defined ? ' absolute top-0 right-0' : '' %}
+  <a class="delete-btn material-symbols-outlined {{ classes }}" href="#">delete</a>
+  <form class="hidden delete-form" method="post" action="{{ path }}">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ id) }}">
+  </form>
+{% endif %}

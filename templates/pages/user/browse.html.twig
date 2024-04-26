@@ -1,0 +1,31 @@
+{% set actionBtn = {link: path('app_user_add'), label: 'Redakteur erstellen'} %}
+{% extends 'layouts/base.html.twig' %}
+
+{% block body %}
+  <h1>Redakteure <small>({{ items|length }})</small></h1>
+  <div class="list" id="item-list">
+    <div class="w-full flex">
+      <p class="heading ml-2 lg:w-6/12">E-Mail</p>
+      <p class="heading hidden lg:flex lg:w-4/12 ">Status</p>
+      <p class="heading hidden lg:flex lg:w-2/12 mr-2"></p>
+    </div>
+    <hr class="line w-full"/>
+    {% for item in items %}
+      <div
+          class="item group w-full show-details"
+          data-read="{{ path('app_user_read', {id: item.id}) }}">
+
+        <p class="lg:w-6/12 ml-2">{{ item.email }}</p>
+        <p class="hidden lg:w-4/12 lg:flex items-center">{{ item.verified ? 'verifiziert' : 'offen' }}</p>
+        <div class="hidden lg:flex lg:w-2/12 ml-auto mr-2">
+          {% include 'components/pages/actions.html.twig' with {
+            edit: path('app_user_edit', {id: item.id}),
+            deleteLink: path('app_user_delete', {id: item.id}),
+            id: item.id
+          } %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  {% include 'scripts/edit_delete_handling.html.twig' %}
+{% endblock %}

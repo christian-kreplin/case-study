@@ -1,0 +1,26 @@
+<script type="text/javascript">
+
+  (function ($) {
+    const $itemList = $('#item-list')
+
+    $('.delete-btn').click(function (e) {
+        e.stopPropagation()
+        e.preventDefault()
+
+        const $form = $(this).next('form')
+
+        if (confirm('Wirklich löschen?')) {
+          $form.submit()
+        }
+      }
+    )
+
+    $itemList.find('.edit-btn').click((e) => {
+      e.stopPropagation()
+    })
+
+    $itemList.find('.show-details').click(function () {
+      window.location = $(this).data('read')
+    })
+  })(jQuery);
+</script>

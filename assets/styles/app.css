@@ -1,0 +1,17 @@
+@import './components/form.css';
+@import './components/typo.css';
+@import './components/list.css';
+@import './components/button.css';
+@import './components/vich-image.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  @apply h-full
+}
+
+body {
+  @apply pb-4 text-gray-700 dark:text-gray-200 bg-surface-100 dark:bg-surfacedark-100 flex flex-col
+}

@@ -1,0 +1,25 @@
+{% extends 'layouts/email.html.twig' %}
+
+{% block content %}
+  <h1>Konto aktivieren</h1>
+  <p>
+    Du kannst dein Konto über die folgende Schaltfläche aktivieren. Der Link ist 1 Stunde gültig <br/><br/>
+  </p>
+
+  <table width="100%" cellspacing="0" cellpadding="0">
+    <tr>
+      <td align="left">
+        <table cellspacing="0" cellpadding="0">
+          <tr>
+            <td align="left" bgcolor="#6750a4">
+              <a href="{{ signedUrl|raw }}" target="_blank"
+                 style="padding: 12px 24px; border: 1px solid #6750a4; color: #ffffff;text-decoration: none;font-weight:bold;display: inline-block; border-radius: 8px;">
+                Konto aktivieren
+              </a>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+{% endblock %}

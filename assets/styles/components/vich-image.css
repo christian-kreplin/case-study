@@ -1,0 +1,13 @@
+@layer components {
+  .vich-image > input + div {
+    @apply flex items-center my-3
+  }
+
+  .vich-image > input + div > label {
+    @apply order-1
+  }
+
+  .vich-image > input + div + a + a {
+    @apply hidden
+  }
+}

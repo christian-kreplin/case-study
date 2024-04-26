@@ -1,0 +1,36 @@
+{% set modalTitle = 'Neues Passwort' %}
+{% extends 'layouts/modal.html.twig' %}
+
+{% block content %}
+  {{ form_start(form) }}
+
+  <div class="field">
+    <input type="password"
+           value="{{ field_value(form.plainPassword.first) }}"
+           name="{{ field_name(form.plainPassword.first) }}"
+           id="{{ field_name(form.plainPassword.first) }}"
+           class="default peer"
+           placeholder=" "
+           autocomplete="password"
+           required>
+    {% include 'components/form/label_for_input.html.twig' with {id: field_name(form.plainPassword.first), text: field_label(form.plainPassword.first)} %}
+  </div>
+
+  <div class="field">
+    <input type="password"
+           value="{{ field_value(form.plainPassword.second) }}"
+           name="{{ field_name(form.plainPassword.second) }}"
+           id="{{ field_name(form.plainPassword.second) }}"
+           class="default peer"
+           placeholder=" "
+           autocomplete="password"
+           required>
+    {% include 'components/form/label_for_input.html.twig' with {id: field_name(form.plainPassword.second), text: field_label(form.plainPassword.second)} %}
+  </div>
+  <button class="w-full mt-6" type="submit">Passwort speichern</button>
+  {{ form_end(form) }}
+
+  {% if errors is defined %}
+    {% include 'components/dialog/dialog.html.twig' with {title: (errors|length == 1 ? 'Problem' : 'Probleme') ~ ' aufgetreten', message: errors, buttonText: 'OK'} %}
+  {% endif %}
+{% endblock %}

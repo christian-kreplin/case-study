@@ -1,0 +1,12 @@
+{% set active = link in app.request.pathinfo ? 'active ' : '' %}
+
+<li class="flex lg:block">
+  <a href="{{ link }}"
+     class="group {{ active }} min-h-[56px] lg:w-auto flex items-center gap-1 px-4 rounded-full hover:bg-secondary-100 dark:hover:bg-secondary-700 hover:bg-opacity-80 dark:hover:bg-opacity-80 duration-200 flex-col lg:flex-row mx-auto">
+    <div
+        class="hover-icon duration-200 relative lg:mr-2 h-8 flex items-center justify-center rounded-2xl m-auto lg:m-0">
+      <span class="material-symbols-outlined">{{ icon }}</span>
+    </div>
+    <p class="text-sm text-neutral-900 dark:text-neutral-100 tracking-[.0416em] leading-tight text-center hidden lg:flex">{{ title }}</p>
+  </a>
+</li>

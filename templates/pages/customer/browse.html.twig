@@ -1,0 +1,43 @@
+{% set actionBtn = {link: path('app_customer_add'), label: 'Kunde erstellen'} %}
+{% extends 'layouts/base.html.twig' %}
+
+{% block body %}
+  <h1>Kunden <small>({{ items|length }})</small></h1>
+  <div class="list" id="item-list">
+    <div class="w-full flex">
+      <p class="heading ml-2 lg:w-6/12">Name</p>
+      <p class="heading hidden lg:flex lg:w-3/12">Case Studies</p>
+      <p class="heading hidden lg:flex lg:w-2/12">{% if app.user %}Status{% endif %}</p>
+      <p class="hidden lg:flex lg:w-1/12 ml-auto mr-2"></p>
+    </div>
+    <hr class="line w-full"/>
+    {% for item in items %}
+      <div
+          class="item group w-full show-details"
+          data-read="{{ path('app_customer_read', {id: item.id}) }}">
+        <div class="lg:w-6/12 ml-2 flex items-center">
+          {% if item.imageName != null %}
+            {% include 'components/avatar/image.html.twig' with {path: 'uploads/images/customer/' ~ item.id ~ '/', item: item} %}
+          {% else %}
+            {% include 'components/avatar/placeholder.html.twig' with {name: item.name} %}
+          {% endif %}
+          <p class="ml-4">{{ item.name }}</p>
+        </div>
+        <p class="hidden lg:w-3/12 lg:flex items-center">{{ item.numberCaseStudies }}</p>
+        {% if app.user %}
+          <p class="hidden lg:w-2/12 lg:flex items-center">{{ item.active ? 'aktiv' : 'inaktiv' }}</p>
+          <div class="hidden lg:flex lg:w-1/12 ml-auto mr-2">
+            {% include 'components/pages/actions.html.twig' with {
+              edit: path('app_customer_edit', {id: item.id}),
+              deleteLink: path('app_customer_delete', {id: item.id}),
+              id: item.id
+            } %}
+          </div>
+        {% else %}
+          <div class="hidden lg:flex lg:w-1/12 mr-2"></div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+  {% include 'scripts/edit_delete_handling.html.twig' %}
+{% endblock %}

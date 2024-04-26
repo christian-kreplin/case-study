@@ -1,0 +1,53 @@
+{% set actionBtn = {link: path('app_case_study_add'), label: 'Case Study erstellen'} %}
+{% extends 'layouts/base.html.twig' %}
+
+{% block body %}
+  <article class="lg:w-1/2 relative">
+    {% include 'components/pages/item_header.html.twig' with {
+      backLink: path('app_case_study_browse'),
+      button: {
+        text: 'Bearbeiten',
+        link: path('app_case_study_edit', {id: case_study.id})
+      },
+      withDelete: true,
+    } %}
+
+    {% include 'components/pages/delete.html.twig' with {
+      path: path('app_case_study_delete', {id: case_study.id}),
+      id: case_study.id,
+      reposition: true
+    } %}
+
+    <div class="pl-2 lg:ml-4">
+      <div class="flex items-center flex-col sm:flex-row">
+        {% if case_study.imageName != null %}
+          {% include 'components/avatar/image.html.twig' with {
+            path: 'uploads/images/case_study/',
+            item: case_study,
+            displayBig: true} %}
+        {% else %}
+          {% include 'components/avatar/placeholder.html.twig' with {name: case_study.title, displayBig: true} %}
+        {% endif %}
+
+        <div class="sm:ml-10 text-center sm:text-left mt-8 sm:mt-0">
+          <h1 class="justify-center sm:justify-start">{{ case_study.title }}</h1>
+          <p class="mt-2">
+            <a class="text-link"
+               href="{{ path('app_customer_read', {id: case_study.customer.id}) }}">{{ case_study.customer.name }}</a>
+            <br/>
+            Status: {{ case_study.customer.active ? 'aktiv' : 'inaktiv' }}
+          </p>
+        </div>
+      </div>
+
+      <div class="w-full rounded-2xl mt-8 sm:mt-12 bg-surface-100 dark:bg-gray-800 px-4 py-3">
+        <div class="custom-label">
+          <label>Beschreibung</label>
+        </div>
+        {{ case_study.description|raw }}
+      </div>
+    </div>
+  </article>
+
+  {% include 'scripts/edit_delete_handling.html.twig' %}
+{% endblock %}

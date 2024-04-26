@@ -1,0 +1,10 @@
+{% set imgPath = asset(path ~ item.imageName) %}
+
+{% set sizeClass = ' p-4' %}
+{% if displayBig is defined and displayBig %}
+  {% set sizeClass = ' p-20 sm:p-4 w-16 h-16 text-xl sm:w-40 sm:h-40 sm:text-5xl' %}
+{% endif %}
+
+<div class="rounded-full bg-cover bg-center {{ sizeClass }}"
+     style="background-image: url('{{ imgPath }}')">
+</div>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Case-Study Manager</title>
+  <link rel="icon"
+        href="{{ asset('build/img/csm.ico') }}">
+  <link rel="stylesheet" href="{{ asset('build/material-icons/index.css') }}"/>
+
+  {% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+  {% endblock %}
+
+  {% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+    {% block importmap %}{% endblock %}
+  {% endblock %}
+  <script src="{{ asset('build/jquery.slim.min.js') }}"></script>
+</head>
+<body>
+
+{% include 'components/sidebar.html.twig' %}
+{% include 'components/header/header.html.twig' %}
+
+{% set classes = ' bg-neutral-10 dark:bg-neutral-900 rounded-2xl p-6 overflow-scroll' %}
+<main class="lg:ml-[284px] lg:mr-4 h-full {{ isModal is defined ? '' : classes }}">
+  {% block body %}{% endblock %}
+
+  {% for notice in app.flashes('message') %}
+    <div id="snackbar_a"
+         class="[&.show]:opacity-100 [&.show]:bottom-24 lg:[&.show]:bottom-4 fixed left-4 right-4 -bottom-full opacity-0 duration-[400ms] ease-[cubic-bezier(0, 0, 1)] flex flex-row items-center sm:w-80 gap-4 py-3 px-4 shadow-md rounded text-neutral-50 dark:text-neutral-800 bg-neutral-800 dark:bg-neutral-100 z-50 show">
+      <p class="flex flex-grow text-sm tracking-[0.25px]">{{ notice }}</p>
+      <button data-close="#snackbar_a" class="flex items-center">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+  {% endfor %}
+</main>
+
+</body>
+</html>

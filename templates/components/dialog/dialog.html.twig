@@ -1,0 +1,27 @@
+<div id="dialog_a"
+     class="[&.show]:opacity-100 [&.show]:h-full [&.show]:inset-0 duration-[400ms] ease-[cubic-bezier(0, 0, 1)] opacity-0 w-full h-0 z-50 overflow-auto fixed left-0 top-0 flex items-center justify-center dialog show">
+  <div data-close="#dialog_a" class="backDialog hidden z-40 overflow-auto fixed bg-black opacity-50"></div>
+  <div class="z-50 flex flex-col w-11/12 sm:w-[480px] h-auto bg-surface-300 dark:bg-surfacedark-300 rounded-[28px]">
+    <div class="flex flex-col gap-4 justify-start px-8 pt-8 pb-0">
+      <h3 class="text-2xl font-normal text-gray-900 dark:text-gray-100">{{ title }}</h3>
+      {% if message is iterable %}
+        <ul class="list-disc ml-4">
+          {% for item in message %}
+            <li>
+              <p class="text-sm tracking-[0.25px] leading-5">{{ item }}</p>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="text-sm tracking-[0.25px] leading-5">{{ message }}</p>
+      {% endif %}
+    </div>
+    <div class="flex flex-row justify-end gap-2 px-8 py-8">
+      <button
+          data-close="#dialog_a"
+          class="btn relative flex flex-row items-center justify-center gap-x-2 py-2.5 px-6 rounded-[6.25rem] hover:shadow-md text-sm tracking-[.00714em] font-medium bg-primary-600 text-white dark:bg-primary-200 dark:text-primary-800">
+        {{ buttonText }}
+      </button>
+    </div>
+  </div>
+</div>

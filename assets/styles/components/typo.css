@@ -1,0 +1,17 @@
+@layer components {
+  h1 {
+    @apply text-[1.4rem] lg:text-[1.6rem] leading-9 font-normal flex items-baseline break-all sm:break-normal
+  }
+
+  h1 > small {
+    @apply text-base ml-2
+  }
+
+  p + p {
+    @apply mt-4
+  }
+
+  .text-link {
+    @apply text-primary-600 dark:text-primary-200 hover:underline
+  }
+}

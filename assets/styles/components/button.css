@@ -1,0 +1,18 @@
+@layer components {
+  .action-btn {
+    @apply relative inline-flex flex-row items-center justify-center gap-x-2 py-4 px-4 rounded-xl text-sm tracking-[.00714em] font-medium bg-secondary-100 text-primary-900 dark:bg-secondary-700 dark:text-secondary-100 hover:bg-secondary-200 dark:hover:bg-secondary-600 duration-200
+  }
+
+  .action-btn:hover::after,
+  .action-btn:focus::after {
+    @apply hidden
+  }
+
+  .default-btn {
+    @apply relative flex flex-row items-center justify-center gap-x-2 py-2.5 px-6 rounded-[6.25rem] hover:shadow-md text-sm tracking-[.00714em] font-medium bg-primary-600 text-white dark:bg-primary-200 dark:text-primary-800 ml-auto my-auto
+  }
+
+  .delete-btn {
+    @apply relative inline-flex items-center justify-center w-12 h-12 gap-x-2 py-2.5 px-6 p-2 rounded-[6.25rem] text-[18px] tracking-[.00714em] text-center font-medium hover:bg-surface-300 focus:bg-surface-400 dark:text-primary-200 dark:hover:bg-surfacedark-300 dark:focus:bg-surfacedark-400
+  }
+}

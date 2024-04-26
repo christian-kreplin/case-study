@@ -1,0 +1,27 @@
+{# Generate avatar placeholder color to provide some variation #}
+{% set check = name|length % 6 %}
+{% if check == 0 %}
+  {% set colorClass = 'text-blue-800 bg-blue-200' %}
+{% elseif check == 1 %}
+  {% set colorClass = 'text-green-800 bg-green-200' %}
+{% elseif check == 2 %}
+  {% set colorClass = 'text-yellow-800 bg-yellow-200' %}
+{% elseif check == 3 %}
+  {% set colorClass = 'text-orange-800 bg-orange-200' %}
+{% elseif check == 4 %}
+  {% set colorClass = 'text-indigo-800 bg-indigo-200' %}
+{% else %}
+  {% set colorClass = 'text-red-800 bg-red-200' %}
+{% endif %}
+
+{% set sizeClass = ' p-4' %}
+{% if displayBig is defined and displayBig %}
+  {% set sizeClass = ' p-20 sm:p-4 w-16 h-16 sm:w-40 sm:h-40' %}
+{% endif %}
+
+<div class="rounded-full relative {{ colorClass }} {{ sizeClass }}">
+  <span
+      class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 {{ displayBig is defined and displayBig ? ' text-5xl' : 'text-sm' }}">
+    {{ name|first|upper }}
+  </span>
+</div>

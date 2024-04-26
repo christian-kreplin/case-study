@@ -1,0 +1,13 @@
+<div class="flex mb-6">
+  {% include 'components/form/back_arrow.html.twig' with {link: backLink} %}
+  {% if app.user %}
+    {% if button is not defined %}
+      <button class="ml-auto default-btn my-auto" type="submit">Speichern</button>
+    {% else %}
+      <a class="ml-auto default-btn" href="{{ button.link }}">{{ button.text }}</a>
+    {% endif %}
+    {% if withDelete is defined %}
+      <div class="w-[60px]"></div>
+    {% endif %}
+  {% endif %}
+</div>

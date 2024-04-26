@@ -1,0 +1,29 @@
+@layer components {
+  .list {
+    @apply w-full flex flex-row flex-wrap p-2
+  }
+
+  .list .heading {
+    @apply text-sm font-bold mt-5 mb-3
+  }
+
+  .list p + p {
+    @apply mt-0
+  }
+
+  .list .line {
+    @apply border-gray-200 dark:border-gray-700
+  }
+
+  .list .item {
+    @apply h-16 flex flex-row items-center hover:cursor-pointer hover:bg-secondary-50 hover:dark:bg-secondary-700 rounded-lg
+  }
+
+  .list .item .actions {
+    @apply ml-auto hidden flex-row
+  }
+
+  .list .item .actions > a {
+    @apply relative inline-flex items-center justify-center w-12 h-12 gap-x-2 py-2.5 px-6 p-2 rounded-[6.25rem] text-[18px] tracking-[.00714em] text-center font-medium hover:bg-surface-300 focus:bg-surface-400 dark:text-primary-200 dark:hover:bg-surfacedark-300 dark:focus:bg-surfacedark-400
+  }
+}

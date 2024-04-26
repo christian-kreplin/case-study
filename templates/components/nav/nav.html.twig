@@ -1,0 +1,23 @@
+<nav class="w-full">
+  <ul class="w-full lg:w-auto flex flex-row lg:flex-col gap-3 grid grid-cols-3  lg:flex">
+    {% include 'components/nav/item.html.twig' with {
+      icon: 'dashboard',
+      title: 'Case Studies',
+      link: path('app_case_study_browse')
+    } %}
+
+    {% include 'components/nav/item.html.twig' with {
+      icon: 'sentiment_satisfied',
+      title: 'Kunden',
+      link: path('app_customer_browse')
+    } %}
+
+    {% if app.user %}
+      {% include 'components/nav/item.html.twig' with {
+        icon: 'groups',
+        title: 'Redakteure',
+        link: path('app_user_browse')
+      } %}
+    {% endif %}
+  </ul>
+</nav>

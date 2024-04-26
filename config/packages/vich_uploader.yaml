@@ -1,0 +1,16 @@
+vich_uploader:
+  db_driver: orm
+
+  mappings:
+    case_study:
+      uri_prefix: /uploads/images/case_study
+      upload_destination: '%kernel.project_dir%/public/uploads/images/case_study'
+      namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+    customer:
+      uri_prefix: /uploads/images/customer
+      upload_destination: '%kernel.project_dir%/public/uploads/images/customer'
+      namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+      directory_namer:
+        service: vich_uploader.namer_directory_property
+        options: { property: 'id' }
