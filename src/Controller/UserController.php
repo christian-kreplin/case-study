@@ -117,6 +117,13 @@ class UserController extends AbstractController
     #[Route('/{id}', name: 'delete', methods: ['POST'])]
     public function delete(Request $request, EntityManagerInterface $entityManager, User $user): Response
     {
+        /** @var User $currentUser */
+        $currentUser = $this->getUser();
+        if ($currentUser->getId() === $user->getId()) {
+            $this->addFlash('message', 'Der eigene Redakteur kann nicht gelöscht werden.');
+            return $this->redirectToRoute('app_user_browse');
+        }
+
         if (!$this->getUser()) {
             return $this->redirectToRoute('app_default_index');
         }
