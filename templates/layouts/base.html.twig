@@ -24,7 +24,7 @@
 {% include 'components/header/header.html.twig' %}
 
 {% set classes = ' bg-neutral-10 dark:bg-neutral-900 rounded-2xl p-6 overflow-scroll' %}
-<main class="lg:ml-[284px] lg:mr-4 h-full {{ isModal is defined ? '' : classes }}">
+<main class="mb-[57px] lg:mb-0 lg:ml-[284px] lg:mr-4 h-full {{ isModal is defined ? '' : classes }}">
   {% block body %}{% endblock %}
 
   {% for notice in app.flashes('message') %}
