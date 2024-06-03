@@ -8,45 +8,50 @@ localization of the whole app is kept in German. Momentary, there is no possibil
 ### Local setup via DDEV
 
 1. Install and configure [DDEV](https://ddev.readthedocs.io/en/latest/users/install/ddev-installation/)
-
 2. Clone this repo
-
-``` shell
-git clone https://github.com/christian-kreplin/case-study
-```
-
 3. Fire up project in DDEV. This may take a while. ☕
-
-``` shell
-cd case-study
-ddev start
-```
-
 4. Install composer dependencies, node modules and create database in DDEVs PHP-container
 
-``` sh
+Shell Script:
+
+``` shell
+# install and configure
+git clone https://github.com/christian-kreplin/case-study
+cd case-study
+
+# fire up ddev
+ddev start
+
+# install dependencides
 ddev ssh
 composer install
 npm install
+
+# build project and create database
 npm run build
 php bin/console doctrine:migrations:migrate
 ```
 
-5. Useful commands (optional)
+### Useful commands
 
-- Execute Fixtures to generate demo data
-  ```
-  ddev ssh
-  php bin/console doctrine:fixtures:load
-  ```
-- Launch Application
-  ```
-  ddev launch
-  ```
-- Get info and links, e. g. for _PhpMyAdmin_ and _MailPit_
-  ```
-  ddev describe
-  ```
+Execute Fixtures to generate demo data
+
+``` shell
+ddev ssh
+php bin/console doctrine:fixtures:load
+```
+
+Launch Application
+
+``` shell
+ddev launch
+```
+
+Get info and links, e. g. for _PhpMyAdmin_ and _MailPit_
+
+``` shell
+ddev describe
+```
 
 ## Used Technologies
 
